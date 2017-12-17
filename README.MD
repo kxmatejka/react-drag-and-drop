@@ -5,6 +5,8 @@ React drag and drop
 
 Simple react drop zone component.
 
+![demo.gif](https://raw.githubusercontent.com/kxmatejka/react-drag-and-drop/master/demo/demo.gif)
+
 # Demo or develop
 
 ```sh
