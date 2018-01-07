@@ -3,11 +3,14 @@ import React, {Component} from 'react'
 export default class DragAndDrop extends Component {
   constructor(props) {
     super(props)
+
+    this.handleDragOver = this.handleDragOver.bind(this)
+    this.handleDrop = this.handleDrop.bind(this)
   }
 
   componentDidMount() {
-    this.dropZone.addEventListener('dragover', this.handleDragOver.bind(this))
-    this.dropZone.addEventListener('drop', this.handleDrop.bind(this))
+    this.dropZone.addEventListener('dragover', this.handleDragOver)
+    this.dropZone.addEventListener('drop', this.handleDrop)
   }
 
   componentWillUnmount() {
