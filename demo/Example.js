@@ -11,9 +11,9 @@ export default class Example extends Component {
     this.handleChangeFile = this.handleChangeFile.bind(this)
   }
 
-  handleChangeFile(files) {
+  handleChangeFile(event) {
     this.setState({
-      files: files
+      files: event.dataTransfer.files
     })
   }
 
@@ -35,9 +35,11 @@ export default class Example extends Component {
         <div id={"header"}>
           <h1>React drag and drop</h1>
         </div>
-        <DragAndDrop label={"Drop files here"}
-                     handler={this.handleChangeFile}
-                     className={"dropzone"}/>
+
+        <DragAndDrop className={"dropzone"} handler={this.handleChangeFile}>
+          <div className={"label"}>Drop files here</div>
+        </DragAndDrop>
+
         <output>
           <ul>
             {fileList}

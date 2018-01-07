@@ -21,22 +21,19 @@ export default class DragAndDrop extends Component {
 
   handleDrop(event) {
     event.preventDefault()
-    this.props.handler(event.dataTransfer.files)
+    this.props.handler(event)
   }
 
   render() {
     const {
-      label,
       style,
-      className
+      className,
+      children
     } = this.props
 
     return (
-      <div ref={dropZone => {
-        this.dropZone = dropZone
-      }}
-           style={style} className={className}>
-        <label>{label}</label>
+      <div ref={dropZone => { this.dropZone = dropZone }} style={style} className={className}>
+        { children }
       </div>
     )
   }
