@@ -9,22 +9,33 @@ export default class DragAndDrop extends Component {
   }
 
   componentDidMount() {
-    this.dropZone.addEventListener('dragover', this.handleDragOver)
-    this.dropZone.addEventListener('drop', this.handleDrop)
+    document.addEventListener('dragover', this.handleDragOver)
+    document.addEventListener('drop', this.handleDrop)
   }
 
   componentWillUnmount() {
-    this.dropZone.removeAllListeners()
+    document.removeEventListener('dragover', this.handleDragOver)
+    document.removeEventListener('drop', this.handleDrop)
   }
 
   handleDragOver(event) {
     event.preventDefault()
-    event.dataTransfer.dropEffect = 'copy'
+    const isOverDropZone = this.dropZone.contains(event.target)
+    if (isOverDropZone) {
+      event.dataTransfer.dropEffect = 'copy'
+      this.dropZone.classList.add('drag-over')
+    } else {
+      this.dropZone.classList.remove('drag-over')
+    }
   }
 
   handleDrop(event) {
     event.preventDefault()
-    this.props.handler(event)
+    const isOverDropZone = this.dropZone.contains(event.target)
+    if (isOverDropZone) {
+      this.props.handler(event)
+    }
+    this.dropZone.classList.remove('drag-over')
   }
 
   render() {
